@@ -1,0 +1,77 @@
+#:kivy 1.9.0
+Root:
+    text1:text1
+    text2:text2
+
+    FloatLayout:
+        size:(900,500)
+        #Image:
+            #source:'/home/hui/Pictures/saber.jpeg'
+           # allow_stretch:True
+        Button:
+            size_hint:(0.5,.5)
+            pos_hint:{'x':0.5,'y':0}
+            text: 'Post'
+            on_release: root.do_action()
+            bold:True
+            background_color:(1,0,1,1)
+            #border:(2,1,1,8)
+
+
+        Button:
+            size_hint:(0.5,0.5)
+            pos_hint:{'x':0,'y':0.5}
+            text: 'Load'
+            on_release:root.show_load()
+            #color:[1,1,0,1]
+           # font_size:30
+            #halign:'right'
+            #italic:True
+            #underline:True
+
+        #CheckBox:
+            #size_hint:(0.3,0.25)
+           # pos_hint:{'x':0,'y':0.3}
+            #active:
+           # color:(1,0.5,0.5,1)
+           # on_active:root.do_sbprint()
+
+        TextInput:
+            id:text1
+            text:root.string1
+            size_hint:(0.5,0.5)
+            pos_hint:{'x':0,'y':0}
+
+        TextInput:
+            id:text2
+            text:root.string2
+            size_hint:(0.5,0.5)
+            pos_hint:{'x':0.5,'y':0.5}
+
+
+
+       # Slider:
+        #    min:0
+         #   max:100
+          #  value:50
+           # background_horizontal:'/home/hui/Pictures/hui.png'
+            #orientation:
+            #value_track_color:(1,0,1,1)
+<UploadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "horizontal"
+        FileChooserListView:
+            id: filechooser
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+        Button:
+            text: "Cancel"
+            on_release: root.cancel()
+
+        Button:
+            text: "Load"
+            on_release: root.upload(filechooser.path, filechooser.selection)
